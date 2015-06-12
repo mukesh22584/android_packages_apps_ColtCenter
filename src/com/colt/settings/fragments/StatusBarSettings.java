@@ -27,10 +27,13 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.ContentResolver;
 import android.content.res.Resources;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceGroup;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
@@ -64,6 +67,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 	private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
         private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
 	private static final String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
+        private static final String MISSED_CALL_BREATH = "missed_call_breath";
+        private static final String VOICEMAIL_BREATH = "voicemail_breath";
+        private static final String SMS_BREATH = "sms_breath";
+        private static final String BREATHING_NOTIFICATIONS = "breathing_notifications";
 
 	private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
 	private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
@@ -83,6 +90,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 	private CMSystemSettingListPreference mStatusBarBattery;
 	private CMSystemSettingListPreference mStatusBarBatteryShowPercent;
         private CMSystemSettingListPreference mQuickPulldown;
+        private SwitchPreference mMissedCallBreath;
+        private SwitchPreference mVoicemailBreath;
+        private SwitchPreference mSmsBreath;
+        private PreferenceGroup mBreathingNotifications;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,6 +101,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
         addPreferencesFromResource(R.xml.statusbar_settings);
         final ContentResolver resolver = getActivity().getContentResolver();
+        final PreferenceScreen prefSet = getPreferenceScreen();
 
 	mStatusBarClock = (CMSystemSettingListPreference) findPreference(STATUS_BAR_CLOCK_POSITION);
 	mStatusBarBatteryShowPercent =
@@ -155,6 +167,36 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 	mQuickPulldown.setOnPreferenceChangeListener(this);
 
 	setStatusBarDateDependencies();
+
+        mMissedCallBreath = (SwitchPreference) findPreference(MISSED_CALL_BREATH);
+        mVoicemailBreath = (SwitchPreference) findPreference(VOICEMAIL_BREATH);
+        mSmsBreath = (SwitchPreference) findPreference(SMS_BREATH);
+
+        mBreathingNotifications = (PreferenceGroup) findPreference(BREATHING_NOTIFICATIONS);
+
+        Context context = getActivity();
+        ConnectivityManager cm = (ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if(cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE)) {
+
+            mMissedCallBreath.setChecked(Settings.System.getInt(resolver,
+                    Settings.System.KEY_MISSED_CALL_BREATH, 0) == 1);
+            mMissedCallBreath.setOnPreferenceChangeListener(this);
+
+            mVoicemailBreath.setChecked(Settings.System.getInt(resolver,
+                    Settings.System.KEY_VOICEMAIL_BREATH, 0) == 1);
+            mVoicemailBreath.setOnPreferenceChangeListener(this);
+
+            mSmsBreath.setChecked(Settings.Global.getInt(resolver,
+                    Settings.Global.KEY_SMS_BREATH, 0) == 1);
+            mSmsBreath.setOnPreferenceChangeListener(this);
+        } else {
+            prefSet.removePreference(mMissedCallBreath);
+            prefSet.removePreference(mVoicemailBreath);
+            prefSet.removePreference(mSmsBreath);
+            prefSet.removePreference(mBreathingNotifications);
+        }
     }
 
      @Override
@@ -193,6 +235,21 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             Settings.System.putInt(
                     resolver, STATUS_BAR_DATE_STYLE, statusBarDateStyle);
             mStatusBarDateStyle.setSummary(mStatusBarDateStyle.getEntries()[index]);
+            return true;
+        } else if (preference == mMissedCallBreath) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(getContentResolver(), MISSED_CALL_BREATH,
+                    value ? 1 : 0);
+            return true;
+        } else if (preference == mVoicemailBreath) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(getContentResolver(), VOICEMAIL_BREATH,
+                    value ? 1 : 0);
+            return true;
+        } else if (preference == mSmsBreath) {
+            boolean value = (Boolean) newValue;
+            Settings.Global.putInt(getContentResolver(), SMS_BREATH,
+                    value ? 1 : 0);
             return true;
         } else if (preference ==  mStatusBarDateFormat) {
             int index = mStatusBarDateFormat.findIndexOfValue((String) newValue);
