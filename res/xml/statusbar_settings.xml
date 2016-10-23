@@ -172,6 +172,12 @@
          android:summary="@string/status_bar_double_tap_to_sleep_summary"
 	android:defaultValue="true" />
 
+     <PreferenceScreen
+        android:key="colt_ticker"
+        android:fragment="com.colt.settings.fragments.Ticker"
+        android:title="@string/ticker_screen_title" 
+        android:icon="@drawable/colt_ticker_icon" />
+
     <PreferenceCategory
         android:key="breathing_notifications"
         android:title="@string/breathing_notifications_category">
