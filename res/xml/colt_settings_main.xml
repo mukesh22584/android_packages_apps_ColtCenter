@@ -36,6 +36,13 @@
             android:title="@string/quicksettings_title"
             android:fragment="com.colt.settings.fragments.QuickSettings"/>
 
+	<!-- Blur UI -->
+	<PreferenceScreen
+            android:fragment="com.colt.settings.fragments.BlurPersonalizations"
+            android:key="blur_personalization"
+            android:title="@string/settings_blur_cat"
+            android:icon="@drawable/ic_colt_blur" />
+
 	<!-- Buttons  -->
 	<PreferenceScreen
 	    android:fragment="com.colt.settings.fragments.ButtonSettings"
