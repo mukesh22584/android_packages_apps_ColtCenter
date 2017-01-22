@@ -62,10 +62,10 @@
         android:fragment="com.colt.settings.fragments.LockScreenWeather" />
 
      <PreferenceScreen
-        android:key="lock_clock_fonts"
-        android:title="@string/lock_screen_font_title"
-        android:fragment="com.colt.settings.fragments.LockClockFonts"
-        android:layout="@layout/preference_lock_clock_fonts" />
+	android:key="lockscreen_colors_fonts"
+	android:title="@string/lockscreen_colors_fonts_category_title"
+        android:fragment="com.colt.settings.fragments.LockscreenColorsFonts"
+	android:layout="@layout/preference_lockscreen_colors_fonts" />
 
      <com.colt.settings.preferences.SystemSettingSwitchPreference
         android:key="double_tap_sleep_anywhere"
