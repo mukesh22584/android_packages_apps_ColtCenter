@@ -52,6 +52,14 @@
 <PreferenceCategory 
           android:title="@string/qs_tiles_category">
 
+<!-- OmniJaws -->
+        <PreferenceScreen
+            android:key="omnijaws_settings"
+            android:title="@string/omnijaws_settings_title"
+            android:summary="@string/omnijaws_settings_summary"
+            android:fragment="com.colt.settings.fragments.OmniJawsSettings" />
+
+
 <com.colt.settings.preferences.SystemSettingSwitchPreference
         android:key="quick_settings_vibrate"
         android:title="@string/quick_settings_vibrate_title"
