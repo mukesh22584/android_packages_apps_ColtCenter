@@ -1,4 +1,4 @@
-+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
   <!-- Copyright (C) 2017 ColtOS Project
  
       Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,10 +16,31 @@
  <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <!-- Categories -->
-  <string name="colt_interface">Colt's Hub</string>
+  <string name="colt_interface">Colts Hub</string>
 
   <!-- Status Bar fragment -->  
   <string name="statusbar_settings_title">Status bar</string>
+
+  <!-- Network traffic -->
+    <string name="network_traffic_title">Network traffic</string>
+    <string name="show_network_traffic_state">Status bar traffic monitor</string>
+    <string name="show_network_traffic_unit">Display unit</string>
+    <string name="show_network_traffic_frequency">Update interval</string>
+    <string name="show_network_traffic_disable">Disabled</string>
+    <string name="show_network_traffic_up">Outgoing</string>
+    <string name="show_network_traffic_down">Incoming</string>
+    <string name="show_network_traffic_all">Outgoing and incoming</string>
+    <string name="show_network_traffic_bit">Bits per second</string>
+    <string name="show_network_traffic_byte">Bytes per second</string>
+    <string name="show_network_traffic_500">500 ms</string>
+    <string name="show_network_traffic_1000">1000 ms</string>
+    <string name="show_network_traffic_1500">1500 ms</string>
+    <string name="show_network_traffic_2000">2000 ms</string>
+    <string name="network_traffic_autohide">Auto hide</string>
+    <string name="network_traffic_autohide_summary">Hide the traffic monitor when there is no activity</string>
+    <string name="network_traffic_autohide_threshold">Inactivity threshold</string>
+    <string name="network_traffic_hidearrow_title">Hide arrows</string>
+    <string name="network_traffic_hidearrow_summary">Hide the traffic monitor activity arrows</string>
 
   <!-- Lockscreen Fragment -->
   <string name="lockscreen_settings_title">Lockscreen</string>
