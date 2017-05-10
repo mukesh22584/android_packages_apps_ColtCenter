@@ -24,5 +24,11 @@
         android:title="@string/lockscreen_enable_power_menu_title"
         android:summary="@string/lockscreen_enable_power_menu_summary"
 	android:defaultValue="true" />
+     
+     <com.colt.settings.preferences.SystemSettingSwitchPreference
+         android:key="double_tap_sleep_anywhere"
+         android:title="@string/double_tap_sleep_anywhere_title"
+         android:summary="@string/double_tap_sleep_anywhere_summary"
+	android:defaultValue="false" />
 
 </PreferenceScreen>
