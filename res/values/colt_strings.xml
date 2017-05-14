@@ -61,4 +61,7 @@
     <string name="quick_settings_vibrate_title">Vibrate on touch</string>
     <string name="quick_settings_vibrate_summary">Vibrate when touching tiles</string>
 
+  <!-- Quick settings tiles -->
+    <string name="sysui_qqs_count_title">Small QS tiles</string>
+
  </resources>
