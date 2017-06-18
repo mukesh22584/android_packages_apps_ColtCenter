@@ -150,7 +150,8 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
         mStatusBarBattery.setOnPreferenceChangeListener(this);
         enableStatusBarBatteryDependents(mStatusBarBattery.getIntValue(0));
-	updatePulldownSummary(mQuickPulldown.getIntValue(0));
+	mQuickPulldown.setOnPreferenceChangeListener(this);
+	updateQuickPulldownSummary(mQuickPulldown.getIntValue(0));
 	setStatusBarDateDependencies();
     }
 
@@ -162,7 +163,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
                 mStatusBarClock.setEntries(getActivity().getResources().getStringArray(
                         R.array.status_bar_clock_style_entries_rtl));
-                mStatusBarClock.setSummary(mStatusBarClock.getEntry());
         }
     }
 
@@ -170,11 +170,15 @@ public class StatusBarSettings extends SettingsPreferenceFragment
      public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getActivity().getContentResolver();
 	if (preference == mStatusBarBattery) {
-	   int batteryStyle = Integer.valueOf((String) newValue);
-	   enableStatusBarBatteryDependents(batteryStyle);
+	   int value = Integer.valueOf((String) newValue);
+	   enableStatusBarBatteryDependents(value);
 	return true;
+	} else if (preference == mQuickPulldown) {
+            int value = Integer.parseInt((String) newValue);
+            updateQuickPulldownSummary(value);
+            return true;
         } else if (preference == mStatusBarDate) {
-            int statusBarDate = Integer.valueOf((String) newValue);
+            int statusBarDate = Integer.parseInt((String) newValue);
             int index = mStatusBarDate.findIndexOfValue((String) newValue);
             Settings.System.putInt(
                     resolver, STATUS_BAR_DATE, statusBarDate);
@@ -182,7 +186,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             setStatusBarDateDependencies();
             return true;
         } else if (preference == mStatusBarDateStyle) {
-            int statusBarDateStyle = Integer.valueOf((String) newValue);
+            int statusBarDateStyle = Integer.parseInt((String) newValue);
             int index = mStatusBarDateStyle.findIndexOfValue((String) newValue);
             Settings.System.putInt(
                     resolver, STATUS_BAR_DATE_STYLE, statusBarDateStyle);
@@ -240,7 +244,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             setStatusBarDateDependencies();
             return true;
   	} else if (preference == mFontStyle) {
-            int val = Integer.valueOf((String) newValue);
+            int val = Integer.parseInt((String) newValue);
             int index = mFontStyle.findIndexOfValue((String) newValue);
             Settings.System.putInt(resolver,
                     Settings.System.STATUSBAR_CLOCK_FONT_STYLE, val);
@@ -252,7 +256,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                     Settings.System.STATUSBAR_CLOCK_FONT_SIZE, size);
             return true;
         } else if (preference == mClockDatePosition) {
-            int val = Integer.valueOf((String) newValue);
+            int val = Integer.parseInt((String) newValue);
             int index = mClockDatePosition.findIndexOfValue((String) newValue);
             Settings.System.putInt(resolver,
                     Settings.System.STATUSBAR_CLOCK_DATE_POSITION, val);
@@ -331,18 +335,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         mStatusBarDateFormat.setEntries(parsedDateEntries);
      }
 
-    private void updatePulldownSummary(int value) {
-        Resources res = getResources();
+	private void updateQuickPulldownSummary(int value) {
+        mQuickPulldown.setSummary(value == 0
+                ? R.string.status_bar_quick_qs_pulldown_off
+                : R.string.status_bar_quick_qs_pulldown_summary);
 
-        if (value == 0) {
-            // quick pulldown deactivated
-            mQuickPulldown.setSummary(res.getString(R.string.status_bar_quick_qs_pulldown_off));
-        } else {
-            String direction = res.getString(value == 2
-                    ? R.string.status_bar_quick_qs_pulldown_summary_left
-                    : R.string.status_bar_quick_qs_pulldown_summary_right);
-            mQuickPulldown.setSummary(res.getString(R.string.status_bar_quick_qs_pulldown_summary, direction));
-        }
     }
 
    @Override

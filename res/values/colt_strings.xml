@@ -55,7 +55,7 @@
   <string name="double_tap_sleep_anywhere_summary">Double-tap anywhere on the lockscreen to put device asleep</string>
 
   <!-- Quick Settings  -->
-    <string name="quicksettings_title">Quick Settings Mat</string>
+    <string name="quicksettings_title">Quick Settings</string>
 
   <!-- Quick setting categories -->
     <string name="qs_tiles_category">Tiles</string>
@@ -202,5 +202,28 @@
     <string name="qs_multiuser_switch_summary">Enable the MultiUser switch in the header</string>
     <string name="qs_expand_indicator_title">Expand Indicator</string>
     <string name="qs_expand_indicator_summary">Enable the expand indicator (^) in the header</string>
+
+    <!-- Changelog -->
+    <string name="changelog_colt_title">Changelog</string>
+    <string name="changelog_colt_error">Unable to load changelog</string>
+
+    <!-- About Colt -->
+    <string name="about_colt">About ColtOS</string>
+
+    <!-- Share ColtOS -->
+    <string name="share_colt_title">Share ColtOS</string>
+    <string name="share_colt_summary">Let Spread ColtOS</string>
+    <string name="share_message">Check out Our ColtOS  @ https://plus.google.com/u/2/communities/102067248475500399675</string>
+    <string name="share_chooser_title">Share ColtOS</string>
+
+    <!-- Sites ColtOS -->
+    <string name="colt_source_title">Github</string>
+    <string name="colt_source_summary">Visit our source git team</string>
+    <string name="colt_google_plus_title">Google+</string>
+    <string name="colt_google_plus_summary">Visit our G+ page for support and news</string>
+
+    <!-- Maintainers -->
+    <string name="maintainers_colt_title">ColtOS Maintainers</string>
+    <string name="maintainers_colt_error">Unable to load maintainers list</string>
 
  </resources>
