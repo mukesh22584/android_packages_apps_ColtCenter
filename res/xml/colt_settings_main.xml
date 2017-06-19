@@ -46,7 +46,7 @@
 	<PreferenceScreen
             android:key="about"
             android:title="@string/about_colt"
-            android:fragment="com.colt.settings.fragments.About"
+            android:fragment="com.colt.settings.fragments.About"/>
 
     </PreferenceCategory>
 
