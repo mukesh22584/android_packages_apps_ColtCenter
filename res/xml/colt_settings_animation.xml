@@ -24,7 +24,7 @@
         android:entryValues="@array/listview_animation_values"
         android:defaultValue="0" />
 
-    <ListPreference
+<ListPreference
         android:key="listview_interpolator"
         android:dialogTitle="@string/listview_interpolator_title"
         android:title="@string/listview_interpolator_title"
@@ -32,5 +32,10 @@
         android:entryValues="@array/listview_interpolator_values"
 	android:defaultValue="0" />
 
+<com.colt.settings.preferences.SystemSettingSwitchPreference
+        android:key="disable_transition_animations"
+        android:title="@string/disable_animations"
+        android:summary="@string/disable_animations_summary"
+	android:defaultValue="false" />
 
 </PreferenceScreen>
