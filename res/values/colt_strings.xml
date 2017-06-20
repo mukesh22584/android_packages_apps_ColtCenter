@@ -245,4 +245,8 @@
     <string name="animation_duration_title">Animation duration</string>
     <string name="animation_duration_default">Default</string>
 
+    <!-- Alarm Fullscreen -->
+    <string name="show_alarm_fullscreen_title">Full screen alarm</string>
+    <string name="show_alarm_fullscreen_summary">Display alarm as full screen instead of heads up</string>
+
  </resources>
