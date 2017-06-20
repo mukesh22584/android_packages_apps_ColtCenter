@@ -225,4 +225,8 @@
     <string name="maintainers_colt_title">ColtOS Maintainers</string>
     <string name="maintainers_colt_error">Unable to load maintainers list</string>
 
+    <!-- Animations -->
+    <string name="animation_title">Animations</string>
+
+
  </resources>

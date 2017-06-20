@@ -42,6 +42,12 @@
             android:key="colt_lockscreen_settings"
             android:title="@string/lockscreen_settings_title"/>
 
+	 <!-- Animations -->
+        <PreferenceScreen
+            android:key="animation_category"
+            android:title="@string/animation_title" 
+            android:fragment="com.colt.settings.fragments.AnimationSettings"
+
 	<!-- About ColtOS -->
 	<PreferenceScreen
             android:key="about"
