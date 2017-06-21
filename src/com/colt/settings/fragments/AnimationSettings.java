@@ -3,6 +3,7 @@ package com.colt.settings.fragments;
 import android.content.ContentResolver;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -35,6 +36,8 @@ public class AnimationSettings extends SettingsPreferenceFragment
     private ListPreference mTileAnimationStyle;
     private ListPreference mTileAnimationDuration;
     private ListPreference mTileAnimationInterpolator;
+    
+    Toast mToast;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -43,10 +46,10 @@ public class AnimationSettings extends SettingsPreferenceFragment
         final ContentResolver resolver = getActivity().getContentResolver();
 
         mToastAnimation = (ListPreference) findPreference(KEY_TOAST_ANIMATION);
-        mToastAnimation.setSummary(mToastAnimation.getEntry());
-        int CurrentToastAnimation = Settings.System.getInt(resolver, Settings.System.TOAST_ANIMATION, 1);
-        mToastAnimation.setValueIndex(CurrentToastAnimation); //set to index of default value
-        mToastAnimation.setSummary(mToastAnimation.getEntries()[CurrentToastAnimation]);
+        int toastanimation = Settings.System.getInt(resolver,
+                Settings.System.TOAST_ANIMATION, 1);
+        mToastAnimation.setValue(String.valueOf(toastanimation));
+	mToastAnimation.setSummary(mToastAnimation.getEntry());
         mToastAnimation.setOnPreferenceChangeListener(this);
 
         mListViewAnimation = (ListPreference) findPreference(KEY_LISTVIEW_ANIMATION);
@@ -97,17 +100,28 @@ public class AnimationSettings extends SettingsPreferenceFragment
         mTileAnimationInterpolator.setEnabled(tileAnimationStyle > 0);
         mTileAnimationInterpolator.setOnPreferenceChangeListener(this);
 
+	if (mToast != null) {
+            mToast.cancel();
+            mToast = null;
+        }
+
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mToastAnimation) {
+	    int value = Integer.parseInt((String) newValue);
             int index = mToastAnimation.findIndexOfValue((String) newValue);
-            Settings.System.putString(resolver, Settings.System.TOAST_ANIMATION, (String) newValue);
+	    Settings.System.putInt(resolver,
+                    Settings.System.TOAST_ANIMATION, value);
             mToastAnimation.setSummary(mToastAnimation.getEntries()[index]);
-            Toast.makeText(getActivity(), R.string.toast_animation_test,
-                    Toast.LENGTH_SHORT).show();
+	    if (mToast != null) {
+                mToast.cancel();
+            }
+            mToast = Toast.makeText(getActivity(), R.string.toast_animation_test,
+                    Toast.LENGTH_SHORT);
+            mToast.show();
             return true;
         } else if (preference == mListViewAnimation) {
             int value = Integer.parseInt((String) newValue);
