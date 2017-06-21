@@ -336,6 +336,8 @@
     <string name="disable_animations">Disable animations</string>
     <string name="disable_animations_summary">Disables transition animations such as when launching an app</string>
 
-    
+    <!-- QS easy toggles -->
+    <string name="qs_easy_toggle_title">Advanced quick setting easy toggle</string>
+    <string name="qs_easy_toggle_summary">One tap action to toggle bluetooth, data, or wifi</string>    
 
  </resources>

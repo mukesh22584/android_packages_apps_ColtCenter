@@ -65,6 +65,12 @@
             android:summary="@string/qs_edit_summary"
             android:defaultValue="true" />
 
+<com.colt.settings.preferences.SecureSettingSwitchPreference
+            android:key="qs_easy_toggle"
+            android:title="@string/qs_easy_toggle_title"
+            android:summary="@string/qs_easy_toggle_summary"
+            android:defaultValue="false" />
+
 <com.colt.settings.preferences.SystemSettingSwitchPreference
             android:key="qs_multiuser_switch_toggle"
             android:title="@string/qs_multiuser_switch_title"
@@ -76,7 +82,6 @@
             android:title="@string/qs_expand_indicator_title"
             android:summary="@string/qs_expand_indicator_summary"
 	    android:defaultValue="true" />
-
 
 </PreferenceCategory>
 
