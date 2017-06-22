@@ -67,12 +67,12 @@ public class AnimationSettings extends SettingsPreferenceFragment
         mListViewInterpolator.setEnabled(listviewanimation > 0);
         mListViewInterpolator.setOnPreferenceChangeListener(this);
 
-	mPowerMenuAnimation = (ListPreference) findPreference(POWER_MENU_ANIMATION);
-        int powermenuanimation = Settings.System.getInt(resolver,
-                Settings.System.POWER_MENU_ANIMATION, 0);
-        mPowerMenuAnimation.setValue(String.valueOf(powermenuanimation));
-        mPowerMenuAnimation.setSummary(mPowerMenuAnimation.getEntry());
-        mPowerMenuAnimation.setOnPreferenceChangeListener(this);
+//	mPowerMenuAnimation = (ListPreference) findPreference(POWER_MENU_ANIMATION);
+//        int powermenuanimation = Settings.System.getInt(resolver,
+//                Settings.System.POWER_MENU_ANIMATION, 0);
+//        mPowerMenuAnimation.setValue(String.valueOf(powermenuanimation));
+//        mPowerMenuAnimation.setSummary(mPowerMenuAnimation.getEntry());
+//        mPowerMenuAnimation.setOnPreferenceChangeListener(this);
 
 	mTileAnimationStyle = (ListPreference) findPreference(PREF_TILE_ANIM_STYLE);
         int tileAnimationStyle = Settings.System.getIntForUser(resolver,
@@ -138,13 +138,13 @@ public class AnimationSettings extends SettingsPreferenceFragment
                     Settings.System.LISTVIEW_INTERPOLATOR, value);
             mListViewInterpolator.setSummary(mListViewInterpolator.getEntries()[index]);
             return true;
-	} else if (preference == mPowerMenuAnimation) {
-            int value = Integer.parseInt((String) newValue);
-            int index = mPowerMenuAnimation.findIndexOfValue((String) newValue);
-            Settings.System.putInt(resolver,
-                    Settings.System.POWER_MENU_ANIMATION, value);
-            mPowerMenuAnimation.setSummary(mPowerMenuAnimation.getEntries()[index]);
-            return true;
+//	} else if (preference == mPowerMenuAnimation) {
+//            int value = Integer.parseInt((String) newValue);
+//            int index = mPowerMenuAnimation.findIndexOfValue((String) newValue);
+//            Settings.System.putInt(resolver,
+//                    Settings.System.POWER_MENU_ANIMATION, value);
+//            mPowerMenuAnimation.setSummary(mPowerMenuAnimation.getEntries()[index]);
+//            return true;
 	 } else if (preference == mTileAnimationStyle) {
             int value = Integer.valueOf((String) newValue);
             int index = mTileAnimationStyle.findIndexOfValue((String) newValue);
