@@ -341,7 +341,7 @@
     <string name="qs_easy_toggle_summary">One tap action to toggle bluetooth, data, or wifi</string>    
 
     <!-- Battery Bar -->
-    <string name="battery_bar_title">Battery bar</string>
+    <string name="battery_bar_title">Battery Bar</string>
     <string name="battery_bar">Battery bar location</string>
     <string name="battery_bar_no_navbar">Battery bar location</string>
     <string name="battery_bar_color">Battery bar color</string>
@@ -361,7 +361,10 @@
     <string name="battery_bar_blend_color_reverse_summary_on">Full &#8594; empty: red &#8594; green &#8594; blue &#8594; red</string>
     <string name="battery_bar_style_reversed">Reversed</string>
 
-      <!-- Navigation Bar -->
+    <!-- Navbar fragment -->
+    <string name="navbar_settings_title">Navigation Bar</string>
+
+    <!-- Navigation Bar -->
     <string name="navbar_interface_title">Interface</string>
     <string name="navbar_size">Bar size</string>
     <string name="navbar_mode">Navigation mode</string>
@@ -381,6 +384,8 @@
     <string name="profile_applist_title">Applications</string>
     <string name="default_string">Default</string>
     <string name="reset">Reset</string>
+    <string name="one_handed_mode_title">One handed mode</string>
+    <string name="one_handed_mode_summary">Allows swiping on the navigation bar to enable one handed mode</string>
 
     <!-- Actions dialog and default task values set in ActionPreference xml-->
     <string name="choose_action_title">Choose action</string>

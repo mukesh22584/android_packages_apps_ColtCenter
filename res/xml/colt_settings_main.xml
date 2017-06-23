@@ -39,8 +39,8 @@
 	<!-- Navigation Bar -->
         <PreferenceScreen
             android:key="navigationbar_category"
-            android:title="@string/navbar_title" 
-            android:fragment="com.colt.settings.fragments.NavbarSettings"
+            android:title="@string/navbar_settings_title" 
+            android:fragment="com.colt.settings.fragments.NavbarSettings"/>
 
         <!-- Lock Screen -->
 	<PreferenceScreen
