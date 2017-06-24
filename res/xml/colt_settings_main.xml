@@ -36,6 +36,12 @@
             android:title="@string/quicksettings_title"
             android:fragment="com.colt.settings.fragments.QuickSettings"/>
 
+	<!-- Buttons  -->
+	<PreferenceScreen
+	    android:fragment="com.cosmic.settings.fragments.ButtonSettings"
+            android:key="cosmic_button_settings"
+            android:title="@string/button_settings_title" />
+
 	<!-- Navigation Bar -->
         <PreferenceScreen
             android:key="navigationbar_category"
