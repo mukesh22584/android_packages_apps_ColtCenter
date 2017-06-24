@@ -28,7 +28,6 @@
 <!--Battery bar customization --> 
 
 <Preference
-
         android:key="batterybar"
         android:title="@string/battery_bar_title"
         android:fragment="com.colt.settings.fragments.BatteryBar" />
