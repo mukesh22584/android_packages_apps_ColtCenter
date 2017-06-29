@@ -13,4 +13,48 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+ <PreferenceCategory
+            android:key="dashboard_category"
+            android:title="@string/dashboard_category">
+
+        <com.colt.settings.preferences.CustomSeekBarPreference
+                android:key="dashboard_portrait_columns"
+                android:title="@string/dashboard_columns_portrait_title"
+                settings:max="3"
+                settings:min="1"
+                settings:units=""
+                android:persistent="false" />
+
+	<com.colt.settings.preferences.CustomSeekBarPreference
+                android:key="dashboard_landscape_columns"
+                android:title="@string/dashboard_columns_landscape_title"
+                settings:max="5"
+                settings:min="1"
+                settings:units=""
+                android:persistent="false" />
+
+	<com.colt.settings.preferences.SystemSettingSwitchPreference
+                android:key="disable_settings_suggestions"
+                android:title="@string/dashboard_suggestions_title"
+                android:summaryOn="@string/summary_dashboard_suggestions_enabled"
+                android:summaryOff="@string/summary_dashboard_suggestions_disabled"
+                android:defaultValue="true" />
+
+	<com.colt.settings.preferences.SystemSettingSwitchPreference
+                android:key="disable_dashboard_conditions"
+                android:title="@string/dashboard_conditions_title"
+                android:summaryOn="@string/summary_dashboard_conditions_enabled"
+                android:summaryOff="@string/summary_dashboard_conditions_disabled"
+                android:defaultValue="true" />
+
+	<com.colt.settings.preferences.SystemSettingSwitchPreference
+                android:key="remove_settings_tile_summary"
+                android:title="@string/remove_tile_summaries_title"
+                android:summaryOn="@string/remove_tile_summaries_summary_enabled"
+                android:summaryOff="@string/remove_tile_summaries_summary_disabled"
+                android:defaultValue="true" />
+
+</PreferenceCategory>
+
+
 </PreferenceScreen>
