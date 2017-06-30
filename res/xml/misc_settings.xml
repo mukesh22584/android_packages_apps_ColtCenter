@@ -20,7 +20,7 @@
         <com.colt.settings.preferences.CustomSeekBarPreference
                 android:key="dashboard_portrait_columns"
                 android:title="@string/dashboard_columns_portrait_title"
-                settings:max="3"
+                android:max="3"
                 settings:min="1"
                 settings:units=""
                 android:persistent="false" />
@@ -28,7 +28,7 @@
 	<com.colt.settings.preferences.CustomSeekBarPreference
                 android:key="dashboard_landscape_columns"
                 android:title="@string/dashboard_columns_landscape_title"
-                settings:max="5"
+                android:max="5"
                 settings:min="1"
                 settings:units=""
                 android:persistent="false" />
@@ -56,5 +56,16 @@
 
 </PreferenceCategory>
 
+	<PreferenceCategory
+            android:key="gestures_category"
+            android:title="@string/gestures_category">
+
+	<com.colt.settings.preferences.SystemSettingSwitchPreference
+             android:key="three_finger_gesture"
+             android:title="@string/three_finger_gesture"
+             android:summary="@string/three_finger_gesture_summary"
+             android:defaultValue="false" />
+
+        </PreferenceCategory>
 
 </PreferenceScreen>

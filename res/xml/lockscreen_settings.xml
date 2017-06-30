@@ -24,11 +24,37 @@
         android:title="@string/lockscreen_enable_power_menu_title"
         android:summary="@string/lockscreen_enable_power_menu_summary"
 	android:defaultValue="true" />
+
+     <com.colt.settings.preferences.SecureSettingSwitchPreference
+        android:key="lockscreen_enable_qs"
+        android:title="@string/lockscreen_enable_qs_title"
+        android:summary="@string/lockscreen_enable_qs_summary"
+        android:defaultValue="true" />
      
+<!--     <com.colt.settings.preferences.SystemSettingSwitchPreference
+        android:key="hide_lockscreen_clock"
+        android:title="@string/hide_lockscreen_clock_title"
+        android:summary="@string/hide_lockscreen_clock_summary"
+        android:defaultValue="true" />
+
      <com.colt.settings.preferences.SystemSettingSwitchPreference
-         android:key="double_tap_sleep_anywhere"
-         android:title="@string/double_tap_sleep_anywhere_title"
-         android:summary="@string/double_tap_sleep_anywhere_summary"
+        android:key="hide_lockscreen_date"
+        android:title="@string/hide_lockscreen_date_title"
+        android:summary="@string/hide_lockscreen_date_summary"
+        android:defaultValue="true" />
+
+     <com.colt.settings.preferences.SystemSettingSwitchPreference
+        android:key="hide_lockscreen_alarm"
+        android:title="@string/hide_lockscreen_alarm_title"
+        android:summary="@string/hide_lockscreen_alarm_summary"
+        android:defaultValue="true" /> -->
+
+     <com.colt.settings.preferences.SystemSettingSwitchPreference
+        android:key="double_tap_sleep_anywhere"
+        android:title="@string/double_tap_sleep_anywhere_title"
+        android:summary="@string/double_tap_sleep_anywhere_summary"
 	android:defaultValue="false" />
+
+
 
 </PreferenceScreen>

@@ -46,7 +46,7 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.dashboard.DashboardSummary;
 
-import com.settings.preferences.CustomSeekBarPreference;
+import com.colt.settings.preferences.CustomSeekBarPreference;
 
 import java.util.Date;
 
