@@ -55,6 +55,11 @@
         android:summary="@string/hide_lockscreen_alarm_summary"
         android:defaultValue="true" />
 
+     <PreferenceScreen
+        android:fragment="com.colt.settings.fragments.LockscreenWeatherCategory"
+        android:key="lockscreen_weather"
+        android:title="@string/weather_category" />
+
      <com.colt.settings.preferences.SystemSettingSwitchPreference
         android:key="double_tap_sleep_anywhere"
         android:title="@string/double_tap_sleep_anywhere_title"
