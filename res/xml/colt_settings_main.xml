@@ -37,17 +37,16 @@
             android:fragment="com.colt.settings.fragments.QuickSettings"/>
 
 	<!-- Blur UI -->
-	<PreferenceScreen
-            android:fragment="com.colt.settings.fragments.BlurPersonalizations"
-            android:key="blur_personalization"
+	<Preference
+            android:key="blur"
             android:title="@string/settings_blur_cat"
-            android:icon="@drawable/ic_colt_blur" />
+            android:fragment="com.colt.settings.fragments.BlurPersonalizations" />
 
 	<!-- Buttons  -->
 	<PreferenceScreen
 	    android:fragment="com.colt.settings.fragments.ButtonSettings"
-            android:key="colt_button_settings"
-            android:title="@string/button_settings_title" />
+            android:key="buttonsettings_category"
+            android:title="@string/button_title" />
 
 	<!-- Navigation Bar -->
         <PreferenceScreen
@@ -61,7 +60,13 @@
             android:key="colt_lockscreen_settings"
             android:title="@string/lockscreen_settings_title"/>
 
-	 <!-- Animations -->
+	<!-- Power Menu -->
+        <PreferenceScreen
+            android:key="powermenu_category"
+            android:title="@string/powermenu_title" 
+            android:fragment="com.colt.settings.fragments.PowerMenuSettings"/>
+	 
+        <!-- Animations -->
         <PreferenceScreen
             android:key="animation_category"
             android:title="@string/animation_title" 
