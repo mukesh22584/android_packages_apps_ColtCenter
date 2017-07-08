@@ -47,6 +47,12 @@
 	    android:fragment="com.colt.settings.fragments.ButtonSettings"
             android:key="buttonsettings_category"
             android:title="@string/button_title" />
+	
+	<!-- Recent apps  -->
+	<PreferenceScreen
+            android:fragment="com.colt.settings.fragments.RecentSettings"
+            android:key="colt_recent_settings"
+            android:title="@string/recent_settings_title"/>
 
 	<!-- Navigation Bar -->
         <PreferenceScreen
