@@ -12,6 +12,7 @@
 -->
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:cm="http://schemas.android.com/apk/res/cyanogenmod.platform"
         android:key="button_settings"
 	android:title="@string/button_title"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
@@ -36,6 +37,22 @@
             android:key="camera_double_tap_power_gesture"
             android:title="@string/camera_double_tap_power_gesture_title"
             android:summary="@string/camera_double_tap_power_gesture_desc"
+            android:persistent="false" />
+
+	<cyanogenmod.preference.CMSystemSettingSwitchPreference
+            android:key="torch_long_press_power_gesture"
+            android:title="@string/torch_long_press_power_gesture_title"
+            android:summary="@string/torch_long_press_power_gesture_desc"
+            android:defaultValue="false"
+            cm:requiresConfig="@*android:bool/config_supportLongPressPowerWhenNonInteractive" />
+
+	<ListPreference
+            android:key="torch_long_press_power_timeout"
+            android:dialogTitle="@string/torch_long_press_power_timeout_title"
+            android:title="@string/torch_long_press_power_timeout_title"
+            android:entries="@array/torch_long_press_power_timeout_entries"
+            android:entryValues="@array/torch_long_press_power_timeout_values"
+            android:dependency="torch_long_press_power_gesture"
             android:persistent="false" />
 
     </PreferenceCategory>

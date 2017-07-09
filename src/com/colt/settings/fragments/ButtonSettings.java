@@ -37,6 +37,7 @@ import cyanogenmod.providers.CMSettings;
 
 import java.util.List;
 
+import org.cyanogenmod.internal.util.QSUtils;
 import org.cyanogenmod.internal.util.ScreenType;
 
 import static android.provider.Settings.Secure.CAMERA_DOUBLE_TAP_POWER_GESTURE_DISABLED;
@@ -63,6 +64,10 @@ public class ButtonSettings extends SettingsPreferenceFragment
     private static final String KEY_VOLUME_CONTROL_RING_STREAM = "volume_keys_control_ring_stream";
     private static final String KEY_CAMERA_DOUBLE_TAP_POWER_GESTURE
             = "camera_double_tap_power_gesture";
+    private static final String KEY_TORCH_LONG_PRESS_POWER_GESTURE =
+            "torch_long_press_power_gesture";
+    private static final String KEY_TORCH_LONG_PRESS_POWER_TIMEOUT =
++            "torch_long_press_power_timeout";
 
     private static final String CATEGORY_POWER = "power_key";
     private static final String CATEGORY_HOME = "home_key";
@@ -129,6 +134,8 @@ public class ButtonSettings extends SettingsPreferenceFragment
     private SwitchPreference mPowerEndCall;
     private SwitchPreference mHomeAnswerCall;
     private SwitchPreference mCameraDoubleTapPowerGesture;
+    private SwitchPreference mTorchLongPressPowerGesture;
+    private ListPreference mTorchLongPressPowerTimeout;
 
     private Handler mHandler;
 
@@ -192,12 +199,25 @@ public class ButtonSettings extends SettingsPreferenceFragment
         // Home button answers calls.
         mHomeAnswerCall = (SwitchPreference) findPreference(KEY_HOME_ANSWER_CALL);
 
+	// Long press power while display is off to activate torchlight
+        mTorchLongPressPowerGesture =
+                (SwitchPreference) findPreference(KEY_TORCH_LONG_PRESS_POWER_GESTURE);
+
+	final int torchLongPressPowerTimeout = CMSettings.System.getInt(resolver,
+                CMSettings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, 0);
+        mTorchLongPressPowerTimeout = initList(KEY_TORCH_LONG_PRESS_POWER_TIMEOUT,
+                torchLongPressPowerTimeout);
+
         mHandler = new Handler();
 
         if (hasPowerKey) {
             if (!TelephonyUtils.isVoiceCapable(getActivity())) {
                 powerCategory.removePreference(mPowerEndCall);
                 mPowerEndCall = null;
+            }
+	    if (!QSUtils.deviceSupportsFlashLight(getActivity())) {
+                powerCategory.removePreference(mTorchLongPressPowerGesture);
+		powerCategory.removePreference(mTorchLongPressPowerTimeout);
             }
             if (mCameraDoubleTapPowerGesture != null &&
                     isCameraDoubleTapPowerGestureAvailable(getResources())) {
@@ -459,6 +479,10 @@ public class ButtonSettings extends SettingsPreferenceFragment
         } else if (preference == mVolumeKeyCursorControl) {
             handleSystemListChange(mVolumeKeyCursorControl, newValue,
                     Settings.System.VOLUME_KEY_CURSOR_CONTROL);
+            return true;
+	} else if (preference == mTorchLongPressPowerTimeout) {
+            handleListChange(mTorchLongPressPowerTimeout, newValue,
+                    CMSettings.System.TORCH_LONG_PRESS_POWER_TIMEOUT);
             return true;
         } else if (preference == mCameraDoubleTapPowerGesture) {
             boolean value = (Boolean) newValue;
