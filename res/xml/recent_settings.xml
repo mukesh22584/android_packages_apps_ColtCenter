@@ -35,5 +35,9 @@
         android:defaultValue="3"
 	android:dependency="show_clear_all_recents" />
 
+    <SwitchPreference
+        android:key="recents_use_grid"
+        android:title="@string/recents_use_grid_title"
+        android:summary="@string/recents_use_grid_summary" />
 
 </PreferenceScreen> 

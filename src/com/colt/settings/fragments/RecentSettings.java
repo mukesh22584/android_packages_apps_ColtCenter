@@ -35,9 +35,13 @@ public class RecentSettings extends SettingsPreferenceFragment
 
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
     private static final String IMMERSIVE_RECENTS = "immersive_recents";
+    private static final String RECENTS_LOCK_ICON = "recents_lock_icon";
+    private static final String RECENTS_USE_GRID = "recents_use_grid";
 
     private ListPreference mRecentsClearAllLocation;
     private ListPreference mImmersiveRecents;
+    private SwitchPreference mLockIcon;
+    private SwitchPreference mUseGrid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,30 @@ public class RecentSettings extends SettingsPreferenceFragment
         mImmersiveRecents.setSummary(mImmersiveRecents.getEntry());
         mImmersiveRecents.setOnPreferenceChangeListener(this);
 
+	mLockIcon = (SwitchPreference)
+                prefSet.findPreference(RECENTS_LOCK_ICON);
+        try {
+           mLockIcon.setChecked(Settings.System.getInt(resolver,
+                    Settings.System.RECENTS_LOCK_ICON) == 1);
+           mLockIcon.setEnabled(Settings.System.getInt(resolver,
+                    Settings.System.RECENTS_USE_GRID) != 1);
+        } catch(SettingNotFoundException e){
+            // if the settings value is unset
+        }
+        mLockIcon.setOnPreferenceChangeListener(this);
+
+        mUseGrid = (SwitchPreference)
+                prefSet.findPreference(RECENTS_USE_GRID);
+        try {
+            mUseGrid.setChecked(Settings.System.getInt(resolver,
+                    Settings.System.RECENTS_USE_GRID) == 1);
+            mUseGrid.setEnabled(Settings.System.getInt(resolver,
+                    Settings.System.RECENTS_LOCK_ICON) != 1);
+        } catch(SettingNotFoundException e){
+            // if the settings value is unset
+        }
+        mUseGrid.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -75,6 +103,18 @@ public class RecentSettings extends SettingsPreferenceFragment
             Settings.System.putInt(resolver,
                     Settings.System.RECENTS_CLEAR_ALL_LOCATION, location);
             mRecentsClearAllLocation.setSummary(mRecentsClearAllLocation.getEntries()[index]);
+            return true;
+	} else if (preference == mLockIcon) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(
+                    resolver, Settings.System.RECENTS_LOCK_ICON, value ? 1 : 0);
+            mUseGrid.setEnabled(!value);
+            return true;
+        } else if (preference == mUseGrid) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(
+                    resolver, Settings.System.RECENTS_USE_GRID, value ? 1 : 0);
+            mLockIcon.setEnabled(!value);
             return true;
 	} else if (preference == mImmersiveRecents) {
             Settings.System.putInt(resolver, Settings.System.IMMERSIVE_RECENTS,

@@ -775,5 +775,9 @@
     <string name="weather_config_summary"></string>
     <string name="weather_icon_pack_title">Condition icon pack</string>
     <string name="weather_icon_pack_note">Note\u003a you can install new icon packs from play store by searching for \"Chronus icons\"</string>
+
+    <!-- AOSP Recents Grid -->
+    <string name="recents_use_grid_title">Grid-style recents</string>
+    <string name="recents_use_grid_summary">Toggle grid-style recents</string>
  
  </resources>
