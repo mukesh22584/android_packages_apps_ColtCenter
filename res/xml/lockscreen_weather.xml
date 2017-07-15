@@ -14,6 +14,7 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cm="http://schemas.android.com/apk/res/cyanogenmod.platform"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/weather_category" >
 
@@ -64,5 +65,23 @@
             android:persistent="false"
             android:dependency="lock_screen_show_weather" />
     </PreferenceCategory>
+
+<PreferenceCategory
+        android:key="more_cat_lock_clock"
+        android:title="@string/lock_clock_title">
+
+	<PreferenceScreen
+            android:key="lock_clock_weather_section"
+            android:title="@string/lock_clock_weather_section_title"
+            android:summary="@string/lock_clock_weather_section_summary" >
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.cyanogenmod.lockclock.preference.Preferences"
+                android:targetPackage="com.cyanogenmod.lockclock" >
+                <extra android:name=":android:show_fragment"
+                    android:value="com.cyanogenmod.lockclock.preference.WeatherPreferences" />
+            </intent>
+        </PreferenceScreen>
+</PreferenceCategory>
 
 </PreferenceScreen>

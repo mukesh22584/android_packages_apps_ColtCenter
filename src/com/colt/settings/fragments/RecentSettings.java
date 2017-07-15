@@ -16,7 +16,12 @@
 
 package com.colt.settings.fragments;
 
-
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.Context;
 import android.content.ContentResolver;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -24,6 +29,8 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.support.v7.preference.PreferenceScreen;
+import android.support.v14.preference.SwitchPreference;
+import android.provider.Settings.SettingNotFoundException;
 
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 
@@ -31,7 +38,7 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
 public class RecentSettings extends SettingsPreferenceFragment
-        implements OnPreferenceChangeListener {
+        implements Preference.OnPreferenceChangeListener {
 
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
     private static final String IMMERSIVE_RECENTS = "immersive_recents";
@@ -48,7 +55,8 @@ public class RecentSettings extends SettingsPreferenceFragment
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.recent_settings);
         ContentResolver resolver = getActivity().getContentResolver();
-        PreferenceScreen prefScreen = getPreferenceScreen();
+
+	PreferenceScreen prefSet = getPreferenceScreen();
 
         mRecentsClearAllLocation = (ListPreference) findPreference(RECENTS_CLEAR_ALL_LOCATION);
         int location = Settings.System.getInt(resolver,
@@ -63,28 +71,27 @@ public class RecentSettings extends SettingsPreferenceFragment
         mImmersiveRecents.setSummary(mImmersiveRecents.getEntry());
         mImmersiveRecents.setOnPreferenceChangeListener(this);
 
-	mLockIcon = (SwitchPreference)
-                prefSet.findPreference(RECENTS_LOCK_ICON);
+	boolean lockicon = false, usegrid = false;
         try {
-           mLockIcon.setChecked(Settings.System.getInt(resolver,
-                    Settings.System.RECENTS_LOCK_ICON) == 1);
-           mLockIcon.setEnabled(Settings.System.getInt(resolver,
-                    Settings.System.RECENTS_USE_GRID) != 1);
-        } catch(SettingNotFoundException e){
+	lockicon = Settings.System.getInt(resolver,
+                    Settings.System.RECENTS_LOCK_ICON) == 1;
+            usegrid = Settings.System.getInt(resolver,
+                    Settings.System.RECENTS_USE_GRID) == 1;
+        } catch (SettingNotFoundException e) {
             // if the settings value is unset
         }
-        mLockIcon.setOnPreferenceChangeListener(this);
+	mLockIcon = (SwitchPreference)
+                prefSet.findPreference(RECENTS_LOCK_ICON);
 
         mUseGrid = (SwitchPreference)
                 prefSet.findPreference(RECENTS_USE_GRID);
-        try {
-            mUseGrid.setChecked(Settings.System.getInt(resolver,
-                    Settings.System.RECENTS_USE_GRID) == 1);
-            mUseGrid.setEnabled(Settings.System.getInt(resolver,
-                    Settings.System.RECENTS_LOCK_ICON) != 1);
-        } catch(SettingNotFoundException e){
-            // if the settings value is unset
-        }
+
+	mLockIcon.setChecked(lockicon);
+        mUseGrid.setChecked(usegrid);
+        mLockIcon.setEnabled(!usegrid || lockicon);
+        mUseGrid.setEnabled(!lockicon || usegrid);
+
+        mLockIcon.setOnPreferenceChangeListener(this);
         mUseGrid.setOnPreferenceChangeListener(this);
 
     }
