@@ -47,7 +47,7 @@
             android:summary="@string/recents_lock_icon_summary"
             android:defaultValue="false" />
 
-     <com.colt.settings.preferences.SystemSettingSwitchPreference
+    <com.colt.settings.preferences.SystemSettingSwitchPreference
             android:key="systemui_recents_mem_display"
             android:title="@string/systemui_recents_mem_display_title"
             android:summary="@string/systemui_recents_mem_display_summary"

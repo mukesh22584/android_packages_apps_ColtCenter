@@ -800,5 +800,4 @@
     <string name="systemui_recents_mem_display_title">Show Memory Bar</string>
     <string name="systemui_recents_mem_display_summary">Enable Disable Ram bar in recent app view</string>
 
- 
  </resources>
