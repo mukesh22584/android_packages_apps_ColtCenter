@@ -800,4 +800,8 @@
     <string name="systemui_recents_mem_display_title">Show Memory Bar</string>
     <string name="systemui_recents_mem_display_summary">Enable Disable Ram bar in recent app view</string>
 
+    <!-- 4G icon instead  of LTE -->
+    <string name="show_fourg_icon_title">4G icon</string>
+    <string name="show_fourg_icon_summary">Display 4G icon in signal icon instead LTE</string>
+
  </resources>
