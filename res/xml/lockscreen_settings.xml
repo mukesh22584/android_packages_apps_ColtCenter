@@ -56,9 +56,10 @@
         android:defaultValue="true" />
 
      <PreferenceScreen
-        android:fragment="com.colt.settings.fragments.LockscreenWeatherCategory"
-        android:key="lockscreen_weather"
-        android:title="@string/weather_category" />
+        android:key="lock_screen_weather"
+        android:title="@string/lock_screen_weather_title"
+        android:summary="@string/lock_screen_weather_summary"
+        android:fragment="com.colt.settings.fragments.LockScreenWeather" />
 
      <com.colt.settings.preferences.SystemSettingSwitchPreference
         android:key="double_tap_sleep_anywhere"
