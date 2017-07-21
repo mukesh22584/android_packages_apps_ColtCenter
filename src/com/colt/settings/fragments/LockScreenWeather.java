@@ -51,7 +51,7 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 import com.android.settings.Utils;
 
-public class LockscreenWeatherCategory extends SettingsPreferenceFragment {
+public class LockScreenWeather extends SettingsPreferenceFragment {
 
 	private static final String TAG = "LockScreenWeather";
 
