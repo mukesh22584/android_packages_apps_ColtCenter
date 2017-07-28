@@ -52,5 +52,8 @@
     <string name="device_google_angler">Nexus 6p</string>
     <string name="device_google_angler_summary">angler\nMaintainer - Nitin Choube</string>
 
+    <!-- ONEPLUS -->
+    <string name="device_oneplus_oneplus2">OnePlus Two</string>
+    <string name="device_oneplus_oneplus2_summary">oneplus2\nMaintainer - Nikhil Verma</string>
 
 </resources>

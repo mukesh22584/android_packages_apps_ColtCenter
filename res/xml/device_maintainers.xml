@@ -58,4 +58,17 @@
 
     </PreferenceCategory>
 
+
+<!-- ONEPLUS -->
+    <PreferenceCategory
+    android:title="@string/device_category_oneplus_title">
+
+	   <Preference
+            android:id="@+id/device_oneplus_oneplus2"
+            android:title="@string/device_oneplus_oneplus2"
+            android:summary="@string/device_oneplus_oneplus2_summary"
+	    android:selectable="false" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
