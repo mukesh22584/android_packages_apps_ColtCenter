@@ -52,5 +52,24 @@
             android:title="@string/systemui_recents_mem_display_title"
             android:summary="@string/systemui_recents_mem_display_summary"
             android:defaultValue="false" />
+     
+    <!-- OmniSwitch -->
+    <PreferenceCategory 
+          android:title="@string/recents_omni_category">
+    
+    <SwitchPreference
+            android:key="recents_use_omniswitch"
+            android:title="@string/recents_use_omniswitch_title"
+            android:summary="@string/recents_use_omniswitch_summary"
+            android:persistent="false" />
+
+    <Preference
+            android:key="omniswitch_start_settings"
+            android:title="@string/omniswitch_start_settings_title"
+            android:summary="@string/omniswitch_start_settings_summary"
+            android:persistent="false" />
+
+     </PreferenceCategory>
+
 
 </PreferenceScreen> 

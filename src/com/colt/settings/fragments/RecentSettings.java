@@ -45,6 +45,21 @@ public class RecentSettings extends SettingsPreferenceFragment
     private static final String RECENTS_LOCK_ICON = "recents_lock_icon";
     private static final String RECENTS_USE_GRID = "recents_use_grid";
 
+    private static final String RECENTS_USE_OMNISWITCH = "recents_use_omniswitch";
+    private static final String OMNISWITCH_START_SETTINGS = "omniswitch_start_settings";
+
+    // Package name of the omnniswitch app
+    public static final String OMNISWITCH_PACKAGE_NAME = "org.omnirom.omniswitch";
+    // Intent for launching the omniswitch settings actvity
+    public static Intent INTENT_OMNISWITCH_SETTINGS = new Intent(Intent.ACTION_MAIN)
+            .setClassName(OMNISWITCH_PACKAGE_NAME, OMNISWITCH_PACKAGE_NAME + ".SettingsActivity");
+
+    private SwitchPreference mRecentsUseOmniSwitch;
+    private Preference mOmniSwitchSettings;
+    private boolean mOmniSwitchInitCalled;
+    private SharedPreferences mPreferences;
+    private Context mContext;
+
     private ListPreference mRecentsClearAllLocation;
     private ListPreference mImmersiveRecents;
     private SwitchPreference mLockIcon;
@@ -53,10 +68,14 @@ public class RecentSettings extends SettingsPreferenceFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         addPreferencesFromResource(R.xml.recent_settings);
+
         ContentResolver resolver = getActivity().getContentResolver();
 
 	PreferenceScreen prefSet = getPreferenceScreen();
+
+	mContext = getActivity().getApplicationContext();
 
         mRecentsClearAllLocation = (ListPreference) findPreference(RECENTS_CLEAR_ALL_LOCATION);
         int location = Settings.System.getInt(resolver,
@@ -94,6 +113,29 @@ public class RecentSettings extends SettingsPreferenceFragment
         mLockIcon.setOnPreferenceChangeListener(this);
         mUseGrid.setOnPreferenceChangeListener(this);
 
+	mRecentsUseOmniSwitch = (SwitchPreference)
+                prefSet.findPreference(RECENTS_USE_OMNISWITCH);
+
+        mPreferences = mContext.getSharedPreferences("recent_settings", Activity.MODE_PRIVATE);
+        if (!mPreferences.getBoolean("first_info_shown", false)) {
+            getActivity().getSharedPreferences("recent_settings", Activity.MODE_PRIVATE)
+                    .edit()
+                    .putBoolean("first_info_shown", true)
+                    .commit();
+            openAOSPFirstTimeWarning();
+        }
+
+        try {
+            mRecentsUseOmniSwitch.setChecked(Settings.System.getInt(resolver,
+                    Settings.System.RECENTS_USE_OMNISWITCH) == 1);
+            mOmniSwitchInitCalled = true;
+        } catch(SettingNotFoundException e){
+            // if the settings value is unset
+        }
+        mRecentsUseOmniSwitch.setOnPreferenceChangeListener(this);
+
+        mOmniSwitchSettings = (Preference)
+                prefSet.findPreference(OMNISWITCH_START_SETTINGS);
     }
 
     @Override
@@ -128,8 +170,50 @@ public class RecentSettings extends SettingsPreferenceFragment
                     Integer.valueOf((String) newValue));
             mImmersiveRecents.setValue(String.valueOf(newValue));
             mImmersiveRecents.setSummary(mImmersiveRecents.getEntry());
+	} else if (preference == mRecentsUseOmniSwitch) {
+            boolean value = (Boolean) newValue;
+
+            // if value has never been set before
+            if (value && !mOmniSwitchInitCalled){
+                openOmniSwitchFirstTimeWarning();
+                mOmniSwitchInitCalled = true;
+            }
+
+            Settings.System.putInt(
+                    resolver, Settings.System.RECENTS_USE_OMNISWITCH, value ? 1 : 0);
+            return true;
         }
         return false;
     }
+
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        if (preference == mOmniSwitchSettings){
+            startActivity(INTENT_OMNISWITCH_SETTINGS);
+            return true;
+        }
+        return super.onPreferenceTreeClick(preference);
+    }
+
+  private void openAOSPFirstTimeWarning() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(getResources().getString(R.string.aosp_first_time_title))
+                .setMessage(getResources().getString(R.string.aosp_first_time_message))
+                .setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                        }
+                }).show();
+    }
+
+    private void openOmniSwitchFirstTimeWarning() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(getResources().getString(R.string.omniswitch_first_time_title))
+                .setMessage(getResources().getString(R.string.omniswitch_first_time_message))
+                .setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                        }
+                }).show();
+    }
+
 }
 

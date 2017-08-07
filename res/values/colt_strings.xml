@@ -787,5 +787,19 @@
     <!-- 4G icon instead  of LTE -->
     <string name="show_fourg_icon_title">4G icon</string>
     <string name="show_fourg_icon_summary">Display 4G icon in signal icon instead LTE</string>
+ 
+    <!-- OmniSwitch -->
+    <string name="recents_omni_category">OmniSwitch</string>
+    <string name="recents_use_omniswitch_title">Use for recents</string>
+    <string name="recents_use_omniswitch_summary">Use OmniSwitch instead of the default recents view</string>
+    <string name="omniswitch_start_settings_title">Settings</string>
+    <string name="omniswitch_start_settings_summary">View OmniSwitch settings</string>
+    <string name="omniswitch_first_time_title">OmniSwitch Recents</string>
+    <string name="omniswitch_first_time_message">Make sure you have also enabled OmniSwitch by opening OmniSwitch settings.</string>
+    <string name="omniswitch_settings_title">OmniSwitch</string>
+
+    <!-- AOSP Recents -->
+    <string name="aosp_first_time_title">AOSP recents</string>
+    <string name="aosp_first_time_message">Immersive recents setting is overridden if the expanded desktop is enabled.</string>
 
  </resources>
