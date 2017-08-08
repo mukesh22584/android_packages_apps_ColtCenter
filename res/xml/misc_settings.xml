@@ -61,13 +61,6 @@
             android:title="@string/gestures_category">
 
         <PreferenceScreen
-            android:key="pie_settings"
-            android:fragment="com.colt.settings.fragments.PieSettings"
-            android:icon="@drawable/ic_colt_pie"
-            android:summary="@string/pie_settings_summary"
-            android:title="@string/pie_settings" />
-
-        <PreferenceScreen
             android:key="gesture_anywhere"
             android:fragment="com.colt.settings.gestureanywhere.GestureAnywhereSettings"
             android:layout="@layout/preference_gesture"
