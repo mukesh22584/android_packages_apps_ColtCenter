@@ -39,11 +39,17 @@
             android:summary="@string/camera_double_tap_power_gesture_desc"
             android:persistent="false" />
 
-	<cyanogenmod.preference.CMSystemSettingSwitchPreference
+<!--	<cyanogenmod.preference.CMSystemSettingSwitchPreference
                 android:key="navigation_bar_menu_arrow_keys"
                 android:title="@string/navigation_bar_arrow_keys_title"
                 android:summary="@string/navigation_bar_arrow_keys_summary"
-                android:defaultValue="false" />
+                android:defaultValue="false" /> -->
+
+<!--	<com.colt.settings.preferences.SystemSettingSwitchPreference
+            android:key="anbi_enabled"
+            android:title="@string/anbi_title"
+            android:summary="@string/anbi_summary"
+            android:defaultValue="false" /> -->
 
 	<cyanogenmod.preference.CMSystemSettingSwitchPreference
             android:key="torch_long_press_power_gesture"

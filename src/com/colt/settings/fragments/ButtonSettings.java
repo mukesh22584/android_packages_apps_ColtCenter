@@ -62,6 +62,7 @@ public class ButtonSettings extends SettingsPreferenceFragment
     private static final String KEY_HOME_ANSWER_CALL = "home_answer_call";
     private static final String KEY_VOLUME_MUSIC_CONTROLS = "volbtn_music_controls";
     private static final String KEY_VOLUME_CONTROL_RING_STREAM = "volume_keys_control_ring_stream";
+    private static final String KEY_ANBI = "anbi_enabled";
     private static final String KEY_CAMERA_DOUBLE_TAP_POWER_GESTURE
             = "camera_double_tap_power_gesture";
     private static final String KEY_TORCH_LONG_PRESS_POWER_GESTURE =
@@ -136,6 +137,7 @@ public class ButtonSettings extends SettingsPreferenceFragment
     private SwitchPreference mCameraDoubleTapPowerGesture;
     private SwitchPreference mTorchLongPressPowerGesture;
     private ListPreference mTorchLongPressPowerTimeout;
+    private SwitchPreference mAnbi;
 
     private Handler mHandler;
 
@@ -202,6 +204,8 @@ public class ButtonSettings extends SettingsPreferenceFragment
 	// Long press power while display is off to activate torchlight
         mTorchLongPressPowerGesture =
                 (SwitchPreference) findPreference(KEY_TORCH_LONG_PRESS_POWER_GESTURE);
+
+	mAnbi = (SwitchPreference) findPreference(KEY_ANBI);
 
 	final int torchLongPressPowerTimeout = CMSettings.System.getInt(resolver,
                 CMSettings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, 0);
@@ -292,7 +296,10 @@ public class ButtonSettings extends SettingsPreferenceFragment
             prefScreen.removePreference(menuCategory);
         }
 
-        if (hasAssistKey) {
+        if (!hasHomeKey && !hasMenuKey)
+            prefScreen.removePreference(mAnbi);
+
+	if (hasAssistKey) {
             if (!showAssistWake) {
                 assistCategory.removePreference(findPreference(CMSettings.System.ASSIST_WAKE_SCREEN));
             }
