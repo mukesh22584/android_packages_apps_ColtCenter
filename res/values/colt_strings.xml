@@ -936,6 +936,10 @@
     <string name="sms_breath_title">Breathing SMS</string>
     <string name="sms_breath_summary">Will give your SMS notifications a breathing effect in the statusbar</string>
 
+    <!-- In-call DND -->
+    <string name="dnd_when_call_title">In-call do not disturb</string>
+    <string name="dnd_when_call_summary">Auto enable DND during calls</string>
+
     <!-- About Team Colt -->
     <string name="dev_cat_title">Dev Tag</string>
     <string name="dev_colt_title">Team Colt</string>

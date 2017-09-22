@@ -54,6 +54,12 @@
                 android:summaryOff="@string/remove_tile_summaries_summary_disabled"
                 android:defaultValue="true" />
 
+	<com.colt.settings.preferences.SystemSettingSwitchPreference
+		android:key="dnd_when_call"
+                android:title="@string/dnd_when_call_title"
+                android:icon="@drawable/ic_colt_dnd"
+                android:summary="@string/dnd_when_call_summary" />
+
 </PreferenceCategory>
 
 	<PreferenceCategory
