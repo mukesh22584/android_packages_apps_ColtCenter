@@ -1021,12 +1021,6 @@
     <string name="data_disabled_icon_title">Show data disabled icon</string>
     <string name="data_disabled_icon_summary">Display the cross sign next to signal bar when data is disabled</string>
 
-   <!-- Header Weather -->
-    <string name="header_weather_enabled_title">Weather</string>
-    <string name="header_weather_enabled_summary">Enable weather info in expanded header</string>
-    <string name="header_weather_image_enabled_title">Weather Image</string>
-    <string name="header_weather_image_enabled_summary">Enable weather image in expanded header</string>
-
     <string name="status_bar_pulse_charging_battery_title">Pulse battery icon when charging</string>
     <string name="status_bar_pulse_charging_battery_summary_off">Only solid battery style will have pulsing icon</string>
     <string name="status_bar_pulse_charging_battery_summary_on">All battery styles will show pulsing animation</string>
