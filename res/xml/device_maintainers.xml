@@ -81,6 +81,12 @@
             android:title="@string/device_oneplus_oneplus3"
             android:summary="@string/device_oneplus_oneplus3_summary"
             android:selectable="false" />
+	    
+	   <Preference
+            android:id="@+id/device_oneplus_oneplus5"
+            android:title="@string/device_oneplus_oneplus5"
+            android:summary="@string/device_oneplus_oneplus5_summary"
+            android:selectable="false" />
 
     </PreferenceCategory>
 
