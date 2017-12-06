@@ -83,9 +83,9 @@
             android:selectable="false" />
 	    
 	   <Preference
-            android:id="@+id/device_oneplus_oneplus5"
-            android:title="@string/device_oneplus_oneplus5"
-            android:summary="@string/device_oneplus_oneplus5_summary"
+            android:id="@+id/device_oneplus_cheeseburger"
+            android:title="@string/device_oneplus_cheeseburger"
+            android:summary="@string/device_oneplus_cheeseburger_summary"
             android:selectable="false" />
 
     </PreferenceCategory>
